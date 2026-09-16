@@ -82,20 +82,21 @@ class _ComplaintsListScreenState extends State<ComplaintsListScreen> {
             final textPrimary = isDark ? Colors.white : AppConstants.textPrimary;
             final textSecondary = isDark ? const Color(0xFF94A3B8) : AppConstants.textSecondary;
 
-            return Container(
-              padding: EdgeInsets.only(
-                bottom: MediaQuery.of(modalContext).viewInsets.bottom,
-              ),
-              decoration: BoxDecoration(
-                color: bgColor,
-                borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
-              ),
-              constraints: BoxConstraints(
-                maxHeight: MediaQuery.of(modalContext).size.height * 0.75,
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
+            final bottomInset = MediaQuery.of(modalContext).viewInsets.bottom;
+            final screenHeight = MediaQuery.of(modalContext).size.height;
+            final sheetHeight = bottomInset > 0 ? screenHeight * 0.85 : screenHeight * 0.70;
+
+            return Padding(
+              padding: EdgeInsets.only(bottom: bottomInset),
+              child: SizedBox(
+                height: sheetHeight,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: bgColor,
+                    borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+                  ),
+                  child: Column(
+                    children: [
                   // Handle bar & Header
                   Center(
                     child: Container(
@@ -370,7 +371,9 @@ class _ComplaintsListScreenState extends State<ComplaintsListScreen> {
                   ),
                 ],
               ),
-            );
+            ),
+          ),
+        );
           },
         );
       },
