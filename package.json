@@ -1,0 +1,12 @@
+{
+  "name": "yewla-gram-panchayat-platform",
+  "version": "1.0.0",
+  "description": "Full-Stack Citizen Service & Management Platform for Yewla Gram Panchayat",
+  "private": true,
+  "scripts": {
+    "start:backend": "npm --prefix backend run dev",
+    "start:admin": "npm --prefix admin-panel run dev",
+    "test:backend": "npm --prefix backend test",
+    "build:admin": "npm --prefix admin-panel run build"
+  }
+}
