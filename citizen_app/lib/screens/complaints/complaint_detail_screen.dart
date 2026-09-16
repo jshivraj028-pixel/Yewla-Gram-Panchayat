@@ -717,38 +717,44 @@ class _ComplaintDetailScreenState extends State<ComplaintDetailScreen> {
                                       Row(
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Row(
-                                            children: [
-                                              Text(
-                                                comment.userName,
-                                                style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 12.5,
-                                                  color: textPrimary,
-                                                ),
-                                              ),
-                                              if (comment.userRole != 'citizen') ...[
-                                                const SizedBox(width: 6),
-                                                Container(
-                                                  padding: const EdgeInsets.symmetric(
-                                                    horizontal: 5,
-                                                    vertical: 1,
-                                                  ),
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.indigo.shade50,
-                                                    borderRadius: BorderRadius.circular(4),
-                                                  ),
+                                          Expanded(
+                                            child: Row(
+                                              children: [
+                                                Flexible(
                                                   child: Text(
-                                                    comment.userRole.toUpperCase(),
+                                                    comment.userName,
+                                                    maxLines: 1,
+                                                    overflow: TextOverflow.ellipsis,
                                                     style: TextStyle(
-                                                      fontSize: 9,
                                                       fontWeight: FontWeight.bold,
-                                                      color: Colors.indigo.shade800,
+                                                      fontSize: 12.5,
+                                                      color: textPrimary,
                                                     ),
                                                   ),
                                                 ),
+                                                if (comment.userRole != 'citizen') ...[
+                                                  const SizedBox(width: 6),
+                                                  Container(
+                                                    padding: const EdgeInsets.symmetric(
+                                                      horizontal: 5,
+                                                      vertical: 1,
+                                                    ),
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.indigo.shade50,
+                                                      borderRadius: BorderRadius.circular(4),
+                                                    ),
+                                                    child: Text(
+                                                      comment.userRole.toUpperCase(),
+                                                      style: TextStyle(
+                                                        fontSize: 9,
+                                                        fontWeight: FontWeight.bold,
+                                                        color: Colors.indigo.shade800,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
                                               ],
-                                            ],
+                                            ),
                                           ),
                                           if (canDelete)
                                             InkWell(

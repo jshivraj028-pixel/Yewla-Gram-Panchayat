@@ -112,29 +112,31 @@ class _ComplaintsListScreenState extends State<ComplaintsListScreen> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'सार्वजनिक प्रतिक्रिया (${comments.length})',
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                                color: textPrimary,
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'सार्वजनिक प्रतिक्रिया (${comments.length})',
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  color: textPrimary,
+                                ),
                               ),
-                            ),
-                            Text(
-                              '${currentComplaint.complaintId} • ${currentComplaint.title}',
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                fontSize: 11,
-                                color: textSecondary,
+                              const SizedBox(height: 2),
+                              Text(
+                                '${currentComplaint.complaintId} • ${currentComplaint.title}',
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontSize: 11,
+                                  color: textSecondary,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                         IconButton(
                           icon: const Icon(Icons.close, size: 20),
@@ -220,36 +222,42 @@ class _ComplaintsListScreenState extends State<ComplaintsListScreen> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
-                                              Row(
-                                                children: [
-                                                  Text(
-                                                    comment.userName,
-                                                    style: TextStyle(
-                                                      fontWeight: FontWeight.bold,
-                                                      fontSize: 12,
-                                                      color: textPrimary,
-                                                    ),
-                                                  ),
-                                                  if (comment.userRole != 'citizen') ...[
-                                                    const SizedBox(width: 6),
-                                                    Container(
-                                                      padding: const EdgeInsets.symmetric(
-                                                          horizontal: 5, vertical: 1),
-                                                      decoration: BoxDecoration(
-                                                        color: Colors.indigo.shade50,
-                                                        borderRadius: BorderRadius.circular(4),
-                                                      ),
+                                              Expanded(
+                                                child: Row(
+                                                  children: [
+                                                    Flexible(
                                                       child: Text(
-                                                        comment.userRole.toUpperCase(),
+                                                        comment.userName,
+                                                        maxLines: 1,
+                                                        overflow: TextOverflow.ellipsis,
                                                         style: TextStyle(
-                                                          fontSize: 9,
                                                           fontWeight: FontWeight.bold,
-                                                          color: Colors.indigo.shade800,
+                                                          fontSize: 12,
+                                                          color: textPrimary,
                                                         ),
                                                       ),
                                                     ),
+                                                    if (comment.userRole != 'citizen') ...[
+                                                      const SizedBox(width: 6),
+                                                      Container(
+                                                        padding: const EdgeInsets.symmetric(
+                                                            horizontal: 5, vertical: 1),
+                                                        decoration: BoxDecoration(
+                                                          color: Colors.indigo.shade50,
+                                                          borderRadius: BorderRadius.circular(4),
+                                                        ),
+                                                        child: Text(
+                                                          comment.userRole.toUpperCase(),
+                                                          style: TextStyle(
+                                                            fontSize: 9,
+                                                            fontWeight: FontWeight.bold,
+                                                            color: Colors.indigo.shade800,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
                                                   ],
-                                                ],
+                                                ),
                                               ),
                                               if (canDelete)
                                                 InkWell(
